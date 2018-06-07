@@ -4,7 +4,7 @@ import java.util.Date;
 
 import javax.validation.constraints.NotNull;
 
-import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
@@ -29,7 +29,6 @@ public class User {
 		this.role = user.getRole();
 	}
 	
-	@Id
 	private int userId;
 	
 	@NotNull
@@ -44,6 +43,7 @@ public class User {
 	
 	private Date createdDate;
 
+	@Indexed(unique = false)
 	private Role role;
 
 	public Role getRole() {

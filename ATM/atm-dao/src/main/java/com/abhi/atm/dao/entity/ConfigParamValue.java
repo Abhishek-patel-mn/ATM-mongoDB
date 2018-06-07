@@ -1,12 +1,10 @@
 package com.abhi.atm.dao.entity;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class ConfigParamValue {
 
-	@Id
 	private int paramValueId;
 	
 	private String paramValue;

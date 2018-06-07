@@ -2,13 +2,11 @@ package com.abhi.atm.dao.entity;
 
 import java.util.Date;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class Role {
 	
-	@Id
 	private int roleId;
 
 	private String roleName;
