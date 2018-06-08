@@ -2,7 +2,6 @@ package com.abhi.atm.dao.entity;
 
 import java.util.List;
 
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
@@ -12,7 +11,6 @@ public class ConfigParam {
 	
 	private String paramName;
 	
-	@Indexed(unique = false)
 	private List<ConfigParamValue> paramValues;
 
 	public int getParamId() {

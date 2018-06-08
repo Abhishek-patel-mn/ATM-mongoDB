@@ -11,7 +11,6 @@ export class DataServiceService {
   
 	getData(url) {
 		this.data = this.http.get(url);
-		console.log("Response: " + this.data);
 		return this.data;
 	}
 }
