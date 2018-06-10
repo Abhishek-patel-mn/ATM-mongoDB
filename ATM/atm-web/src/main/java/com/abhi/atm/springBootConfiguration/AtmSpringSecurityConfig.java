@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.session.InvalidSessionStrategy;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -90,10 +91,10 @@ public class AtmSpringSecurityConfig implements WebMvcConfigurer {
 	@Configuration
 	@Order(3)
 	public static class FormLoginWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
-
+		
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
-
+			
 			http.csrf().disable()
 					.authorizeRequests()
 					.antMatchers("/registerUser/**").permitAll()
