@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataServiceService } from '../shared-service/data-service.service';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/Rx';
 import { Subscription } from 'rxjs/Rx';
+import 'rxjs/Rx';
 
 @Component({
 	selector: 'app-user',
@@ -17,16 +17,17 @@ export class UserComponent implements OnInit, OnDestroy {
 
 	ngOnInit() {
 
-		this.ds.getData("secured/users").subscribe((data: Response) => {
-			console.log(data);
-			this.userdata = data['data'];
-		});
+		this.ds.getData("secured/users")
+			.subscribe(data => {
+				console.log("inside component");
+				console.log(data);
+				this.userdata = data['data'];
+			});
 
 		const myNumbers = Observable.interval(1000);
-		this.numberObservableSubscription = myNumbers.subscribe(
-			(number: number) => {
-				console.log(number);
-			});
+		this.numberObservableSubscription = myNumbers.map(number => number + 5).subscribe(
+			num => console.log(num)
+		);
 
 	}
 

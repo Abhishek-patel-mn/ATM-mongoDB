@@ -3,14 +3,21 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 export class DataServiceService {
-  data:any;
-  constructor(public http: HttpClient) { }
-  
+	data: any;
+	constructor(public http: HttpClient) { }
+
 	getData(url) {
-		this.data = this.http.get(url);
-		return this.data;
+		return this.http.get(url)
+			.map((res: Response) => {
+				console.log(res);
+				return res;
+			})
+			.catch((error: Response) => {
+				console.log(error.status);
+				return Observable.throw(error);
+			});;
 	}
 }
