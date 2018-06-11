@@ -2,9 +2,17 @@ package com.abhi.atm.springBootConfiguration;
 
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.stereotype.Component;
  
+@Component
 public class SessionListener implements HttpSessionListener {
  
+	@Autowired
+	SimpMessagingTemplate template;
+	
     @Override
     public void sessionCreated(HttpSessionEvent event) {
         System.out.println("==== Session is created ====");
@@ -13,6 +21,8 @@ public class SessionListener implements HttpSessionListener {
  
     @Override
     public void sessionDestroyed(HttpSessionEvent event) {
-        System.out.println("==== Session is destroyed ====");
+        System.out.println("==== Session is destroyed ==== " + template);
+        if(template != null)
+        	template.convertAndSend("/valid", "sessionDestroyed");
     }
 }

@@ -97,7 +97,7 @@ public class AtmSpringSecurityConfig implements WebMvcConfigurer {
 			
 			http.csrf().disable()
 					.authorizeRequests()
-					.antMatchers("/registerUser/**").permitAll()
+					.antMatchers("/registerUser/**", "/atm/session/**").permitAll()
 					.antMatchers("/secured/**").hasAnyRole("ADMIN")
 					.anyRequest().fullyAuthenticated()
 					.and().formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/dashboard").failureUrl("/login")
