@@ -15,13 +15,13 @@ public class SessionListener implements HttpSessionListener {
 	
     @Override
     public void sessionCreated(HttpSessionEvent event) {
-        System.out.println("==== Session is created ====");
+        System.out.println("==== Session is created ==== " + event.getSession().getId());
         event.getSession().setMaxInactiveInterval(10);
     }
  
     @Override
     public void sessionDestroyed(HttpSessionEvent event) {
-        System.out.println("==== Session is destroyed ==== " + template);
+        System.out.println("==== Session is destroyed ==== " + event.getSession().getId());
         if(template != null)
         	template.convertAndSend("/valid", "sessionDestroyed");
     }

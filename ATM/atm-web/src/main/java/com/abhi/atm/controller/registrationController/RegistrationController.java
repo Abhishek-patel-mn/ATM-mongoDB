@@ -25,7 +25,7 @@ public class RegistrationController {
 	@Autowired
 	UserMgmtService userMgmtService;
 
-	@PostMapping(value = "/registerUser")
+	@PostMapping(value = "/public/registerUser")
 	public ResponseEntity<String> registerUser(HttpServletRequest request) {
 		JSONObject jsonResponse = new JSONObject();
 		String data = "";

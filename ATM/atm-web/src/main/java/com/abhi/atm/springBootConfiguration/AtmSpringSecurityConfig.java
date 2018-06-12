@@ -13,7 +13,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.session.InvalidSessionStrategy;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -97,12 +96,12 @@ public class AtmSpringSecurityConfig implements WebMvcConfigurer {
 			
 			http.csrf().disable()
 					.authorizeRequests()
-					.antMatchers("/registerUser/**", "/atm/session/**").permitAll()
+					.antMatchers("/public/**").permitAll()
 					.antMatchers("/secured/**").hasAnyRole("ADMIN")
 					.anyRequest().fullyAuthenticated()
 					.and().formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/dashboard").failureUrl("/login")
 					.and().logout().permitAll().logoutSuccessUrl("/login").permitAll().deleteCookies("JSESSIONID").invalidateHttpSession(true)
-					.and().sessionManagement().invalidSessionUrl("/login");
+					.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).invalidSessionUrl("/login").maximumSessions(1);
 		}
 
 	}
