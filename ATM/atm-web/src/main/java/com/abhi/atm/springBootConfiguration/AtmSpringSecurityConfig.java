@@ -50,10 +50,9 @@ public class AtmSpringSecurityConfig implements WebMvcConfigurer {
 
 		protected void configure(HttpSecurity http) throws Exception {
 			http.csrf().disable()
-					.antMatcher("/adminRest/**").authorizeRequests().anyRequest().hasAnyRole("ADMIN")
+					.antMatcher("/public/**").authorizeRequests().anyRequest().permitAll()
 					.and().httpBasic().realmName(REALM).authenticationEntryPoint(restBasicAuthenticationEntryPoint)
-					.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-					.and().logout().deleteCookies("JSESSIONID").invalidateHttpSession(true);
+					.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		}
 
 		// To allow Pre-flight [OPTIONS] request from browser
@@ -96,7 +95,6 @@ public class AtmSpringSecurityConfig implements WebMvcConfigurer {
 			
 			http.csrf().disable()
 					.authorizeRequests()
-					.antMatchers("/public/**").permitAll()
 					.antMatchers("/secured/**").hasAnyRole("ADMIN")
 					.anyRequest().fullyAuthenticated()
 					.and().formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/dashboard").failureUrl("/login")

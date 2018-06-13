@@ -30,7 +30,7 @@ public class UserController {
 	@Autowired
 	UserMgmtService userMgmtService;
 
-	@PostMapping(value = { "/secured/users", "/adminRest/users" , "/rest/users"})
+	@PostMapping(value = { "/secured/users", "/rest/users" , "/public/users"})
 	public ResponseEntity<String> addUser(@Valid @RequestBody User user) {
 		JSONObject jsonResponse = new JSONObject();
 		String data = "";
@@ -45,7 +45,7 @@ public class UserController {
 		}
 	}
 
-	@GetMapping(value = { "/secured/users", "/rest/users" })
+	@GetMapping(value = { "/secured/users", "/rest/users", "/public/users"})
 	public ResponseEntity<String> getAllUsers() {
 		JSONObject jsonResponse = new JSONObject();
 		try {
