@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { UserComponent } from './user/user.component';
-import { RoomRentComponent } from './room-rent/room-rent.component';
 import { DataServiceService } from './shared-service/data-service.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableModule } from 'primeng/table';
@@ -16,8 +15,7 @@ const appRoutes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'users', component: UserComponent },
-  { path: 'room-rent', component: RoomRentComponent }
+  { path: 'users', component: UserComponent }
 ]
 
 @NgModule({
@@ -25,8 +23,7 @@ const appRoutes = [
     AppComponent,
     HomeComponent,
     AboutComponent,
-    UserComponent,
-    RoomRentComponent
+    UserComponent
   ],
   imports: [
     BrowserModule,
